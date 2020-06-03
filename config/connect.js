@@ -1,11 +1,9 @@
 const Sequelize = require('sequelize');
 const con ={}
-const sequelize = new Sequelize('Events', 'root', 'Nandhini@31', {
+const sequelize = new Sequelize('Calendar', 'root', 'Nandhini@31', {
   host: 'localhost',
   dialect:  'mysql' ,
   
-
-
   pool: {
     max: 5,
     min: 0,

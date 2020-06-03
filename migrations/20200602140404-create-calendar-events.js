@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Events', {
+    return queryInterface.createTable('CalendarEvents', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,19 +11,19 @@ module.exports = {
       Event: {
         type: Sequelize.STRING
       },
-      date: {
+      Date: {
         type: Sequelize.STRING
       },
-      startTime: {
+      StartTime: {
         type: Sequelize.DATE
       },
-      endTime: {
+      EndTime: {
         type: Sequelize.DATE
       },
-      signupId: {
-        type: Sequelize.INTEGER
+      EndTime: {
+        type: Sequelize.DATE
       },
-      flag: {
+      Flag: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -37,6 +37,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Events');
+    return queryInterface.dropTable('CalendarEvents');
   }
 };

@@ -1,4 +1,4 @@
-const events = require('../models').Event
+const events = require('../models').CalendarEvents
 
 const event = () => {
 
@@ -7,28 +7,26 @@ const event = () => {
 event.create = async (req, res) => {
     let val1 = `${req.body.date} ${req.body.startTime}`
     let val2 = `${req.body.date} ${req.body.endTime}`
+    console.log("add calendar vlaues",val1,val2);
     let response = await events.create({
         Event: req.body.eventname,
-        date:req.body.date,
-        startTime: val1,
-        endTime: val2,
-        signupId: req.body.signupId,
-        flag: 0,
+        Date:req.body.date,
+        StartTime: val1,
+        EndTime: val2,
+        Flag: 0,
     })
     return response;
 }
 event.eventlist = async (req, res) => {
     let response = await events.findAll({
-        where: {
-            signupId: req.body.signup_name
-        }
+        
     })
     return response;
 
 }
 event.addeventlist = async (req, res) => {
     let response = await events.update(
-        { flag: 1 },
+        { Flag: 1 },
         {
             where:
             {
@@ -39,10 +37,22 @@ event.addeventlist = async (req, res) => {
     return response;
 }
 event.mycalender = async (req, res) => {
+    console.log("this is calendar")
     let response = await events.findAll({
-        attributes:['id',['Event','title'],['startTime','start'],['endTime','end']],
+        attributes:['id',['Event','title'],['StartTime','start'],['EndTime','end']],
         where: {
-            flag: 1
+            Flag: 1
+        }
+    })
+
+    return response;
+}
+
+event.search = async (req, res) => {
+    let response = await events.findAll({
+        
+        where: {
+            Event: req.body.searchvalue
         }
     })
 
